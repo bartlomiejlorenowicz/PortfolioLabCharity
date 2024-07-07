@@ -1,43 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
-
-    <link rel="stylesheet" href="<c:url value="resources/static/css/style.css"/>"/>
-</head>
-<body>
-<header class="header--main-page">
-    <nav class="container container--70">
-        <ul class="nav--actions">
-            <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
-        </ul>
-
-        <ul>
-            <li><a href="#" class="btn btn--without-border active">Start</a></li>
-            <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="#" class="btn btn--without-border">O nas</a></li>
-            <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
-        </ul>
-    </nav>
-
-    <div class="slogan container container--90">
-        <div class="slogan--item">
-            <h1>
-                Zacznij pomagać!<br/>
-                Oddaj niechciane rzeczy w zaufane ręce
-            </h1>
-        </div>
-    </div>
-</header>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:include page="header.jsp"/>
 
 <section class="stats">
     <div class="container container--85">
@@ -59,7 +24,7 @@
     </div>
 </section>
 
-<section class="steps">
+<section class="steps" id="about">
     <h2>Wystarczą 4 proste kroki</h2>
 
     <div class="steps--container">
@@ -85,21 +50,23 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="/register" class="btn btn--large">Załóż konto</a>
 </section>
 
-<section class="about-us">
+<section class="about-us" id="about-us">
     <div class="about-us--text">
         <h2>O nas</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
             optio esse quisquam illo omnis.</p>
-        <img src="<c:url value="resources/static/images/signature.svg"/>" class="about-us--text-signature" alt="Signature"/>
+        <img src="<c:url value="resources/static/images/signature.svg"/>" class="about-us--text-signature"
+             alt="Signature"/>
     </div>
-    <div class="about-us--image"><img src="<c:url value="resources/static/images/about-us.jpg"/>" alt="People in circle"/>
+    <div class="about-us--image"><img src="<c:url value="resources/static/images/about-us.jpg"/>"
+                                      alt="People in circle"/>
     </div>
 </section>
 
-<section class="help">
+<section class="help" id="foundations">
     <h2>Komu pomagamy?</h2>
 
     <!-- SLIDE 1 -->
@@ -153,5 +120,41 @@
 </footer>
 
 <script src="<c:url value="resources/static/js/app.js"/>"></script>
+<script>
+    $(document).ready(function () {
+        // Przewijanie do sekcji
+        $('.scroll-to').on('click', function (event) {
+            event.preventDefault();
+            var target = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(target).offset().top
+            }, 1000);
+        });
+
+        // Przewijanie do sekcji footer
+        $('.scroll-to-footer').on('click', function (event) {
+            event.preventDefault();
+            $('html, body').animate({
+                scrollTop: $('footer').offset().top
+            }, 1000);
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        // Przewijanie do sekcji
+        $('a[href^="/#"]').on('click', function(event) {
+            event.preventDefault();
+            var target = this.hash;
+            var $target = $(target);
+
+            $('html, body').animate({
+                scrollTop: $target.offset().top
+            }, 1000, function() {
+                window.location.hash = target;
+            });
+        });
+    });
+</script>
 </body>
 </html>

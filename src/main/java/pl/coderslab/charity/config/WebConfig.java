@@ -1,19 +1,15 @@
 package pl.coderslab.charity.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/css/**")
-                .addResourceLocations("classpath:/static/css/");
-        registry.addResourceHandler("/js/**")
-                .addResourceLocations("classpath:/static/js/");
-        registry.addResourceHandler("/images/**")
-                .addResourceLocations("classpath:/static/images/");
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatterForFieldAnnotation(new DateTimeFormatAnnotationFormatterFactory());
     }
 }

@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity(name = "donations")
@@ -28,10 +29,11 @@ public class Donation {
     private String street;
     private String city;
     private String zipCode;
+    private String phone;
 
-    @DateTimeFormat(pattern = "yyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
-    private LocalDate pickUpTime;
+    private LocalTime pickUpTime;
     private String pickUpComment;
 
     public Long getId() {
@@ -98,11 +100,11 @@ public class Donation {
         this.pickUpDate = pickUpDate;
     }
 
-    public LocalDate getPickUpTime() {
+    public LocalTime getPickUpTime() {
         return pickUpTime;
     }
 
-    public void setPickUpTime(LocalDate pickUpTime) {
+    public void setPickUpTime(LocalTime pickUpTime) {
         this.pickUpTime = pickUpTime;
     }
 
@@ -112,5 +114,13 @@ public class Donation {
 
     public void setPickUpComment(String pickUpComment) {
         this.pickUpComment = pickUpComment;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

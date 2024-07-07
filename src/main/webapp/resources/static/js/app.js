@@ -172,3 +172,64 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 });
+
+$(document).ready(function() {
+  // Funkcja aktualizująca podsumowanie
+  function updateSummary() {
+    var quantity = $('#quantity').val();
+    var institution = $('input[name="institution"]:checked').closest('label').find('.title').text(); // Pobierz tekst wybranej instytucji
+    var street = $('#street').val();
+    var city = $('#city').val();
+    var zipCode = $('#zipCode').val();
+    var phone = $('#phone').val();
+    var pickUpDate = $('#pickUpDate').val();
+    var pickUpTime = $('#pickUpTime').val();
+    var pickUpComment = $('#pickUpComment').val();
+
+    $('#summaryQuantity').text(quantity);
+    $('#summaryInstitution').text(institution);
+    $('#summaryStreet').text(street);
+    $('#summaryCity').text(city);
+    $('#summaryZipCode').text(zipCode);
+    $('#summaryPhone').text(phone);
+    $('#summaryDate').text(pickUpDate);
+    $('#summaryTime').text(pickUpTime);
+    $('#summaryComment').text(pickUpComment);
+  }
+
+  // Nasłuchiwanie zmian w polach formularza
+  $('#quantity, input[name="institution"], #street, #city, #zipCode, #phone, #pickUpDate, #pickUpTime, #pickUpComment').on('input change', function() {
+    updateSummary();
+  });
+
+  // Upewnij się, że podsumowanie jest aktualizowane na początku
+  updateSummary();
+
+  // Zablokowanie domyślnego działania formularza na czas testów
+  $('#donationForm').on('submit', function(event) {
+    updateSummary();
+  });
+});
+
+// scrollowanie
+$(document).ready(function() {
+  // Przewijanie do sekcji
+  $('.scroll-to').on('click', function(event) {
+    event.preventDefault();
+    var target = $(this).attr('href');
+    $('html, body').animate({
+      scrollTop: $(target).offset().top
+    }, 1000);
+  });
+
+  // Przewijanie do sekcji footer
+  $('.scroll-to-footer').on('click', function(event) {
+    event.preventDefault();
+    $('html, body').animate({
+      scrollTop: $('footer').offset().top
+    }, 1000);
+  });
+});
+
+
+
