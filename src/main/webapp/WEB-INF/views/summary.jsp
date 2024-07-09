@@ -5,32 +5,32 @@
 
 <section class="form--steps">
     <div class="form--steps-container">
-        <div data-step="6" class="form-section active">
+        <div class="form-section active">
             <h3>Podsumowanie Twojej darowizny</h3>
             <div class="summary">
                 <div class="form-section">
                     <h4>Oddajesz:</h4>
                     <ul>
-                        <li><span class="icon icon-bag"></span><span class="summary--text">4 worki ubrań w dobrym stanie dla dzieci</span></li>
-                        <li><span class="icon icon-hand"></span><span class="summary--text">Dla fundacji "Mam marzenie" w Warszawie</span></li>
+                        <li><span class="icon icon-bag"></span><span class="summary--text">${donation.quantity}</span></li>
+                        <li><span class="icon icon-hand"></span><span class="summary--text">"${donation.institution.name}"</span></li>
                     </ul>
                 </div>
                 <div class="form-section form-section--columns">
                     <div class="form-section--column">
                         <h4>Adres odbioru:</h4>
                         <ul>
-                            <li>Prosta 51</li>
-                            <li>Warszawa</li>
-                            <li>99-098</li>
-                            <li>123 456 789</li>
+                            <li>${donation.street}</li>
+                            <li>${donation.city}</li>
+                            <li>${donation.zipCode}</li>
+                            <li>${donation.phone}</li>
                         </ul>
                     </div>
                     <div class="form-section--column">
                         <h4>Termin odbioru:</h4>
                         <ul>
-                            <li>13/12/2018</li>
-                            <li>15:40</li>
-                            <li>Brak uwag</li>
+                            <li>${donation.pickUpDate}</li>
+                            <li>${donation.pickUpTime}</li>
+                            <li>${donation.pickUpComment}</li>
                         </ul>
                     </div>
                 </div>

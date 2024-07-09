@@ -231,5 +231,31 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function () {
+  let currentStep = 1;
+  const totalSteps = 5;
+
+  function showStep(step) {
+    $('.form-step').removeClass('active');
+    $(`[data-step=${step}]`).addClass('active');
+    $('.form--steps-counter span').text(step);
+  }
+
+  $('.next-step').on('click', function () {
+    if (currentStep < totalSteps) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  });
+
+  $('.prev-step').on('click', function () {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  });
+
+  showStep(currentStep);
+});
 
 

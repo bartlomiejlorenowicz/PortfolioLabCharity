@@ -48,4 +48,21 @@ public class DonationController {
         session.setAttribute("donation", donation);
         return "form-confirmation";
     }
+
+    @GetMapping("/donation")
+    public String giveDonation(Model model) {
+        model.addAttribute("donation", new Donation());
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("institutions", institutionService.findAll());
+        return "donation";
+    }
+
+    @PostMapping("/saveDonationWithoutSession")
+    public String saveDonation(@ModelAttribute Donation donation, Model model) {
+        donationService.save(donation);
+        System.out.println("Donation: " + donation);
+        System.out.println("Institution: " + donation.getInstitution());
+        model.addAttribute("donation", donation);
+        return "form-confirmation-unlogged";
+    }
 }
