@@ -13,8 +13,8 @@
     <div class="bottom-line">
         <span class="bottom-line--copy">Copyright &copy; 2024</span>
         <div class="bottom-line--icons">
-            <a href="#" class="btn btn--small"><img src="images/icon-facebook.svg"/></a>
-            <a href="#" class="btn btn--small"><img src="images/icon-instagram.svg"/></a>
+            <a href="#" class="btn btn--small"><img src="resources/static/images/icon-facebook.svg"/></a>
+            <a href="#" class="btn btn--small"><img src="resources/static/images/icon-instagram.svg"/></a>
         </div>
     </div>
 </footer>

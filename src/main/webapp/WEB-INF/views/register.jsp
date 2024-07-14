@@ -19,6 +19,13 @@
         <div class="form-group">
             <input type="password" name="password2" placeholder="Powtórz hasło" required />
         </div>
+        <div class="form-group">
+            <label for="role">Wybierz rolę:</label>
+            <select name="role" id="role" required>
+                <option value="USER">Użytkownik</option>
+                <option value="ADMIN">Administrator</option>
+            </select>
+        </div>
 
         <div class="form-group form-group--buttons">
             <a href="/login" class="btn btn--without-border">Zaloguj się</a>

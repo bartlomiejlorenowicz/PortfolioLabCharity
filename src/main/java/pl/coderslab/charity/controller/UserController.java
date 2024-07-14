@@ -41,7 +41,12 @@ public class UserController {
         if (user != null && user.getPassword().equals(password)) {
             session.setAttribute("loggedUser", user);
             session.setAttribute("username", user.getUsername());
-            return "redirect:/form";
+
+            if ("ADMIN".equals(user.getRole())) {
+                return "redirect:/admin/dashboard";
+            } else {
+                return "redirect:/form";
+            }
         }
         return "redirect:/login?error";
     }

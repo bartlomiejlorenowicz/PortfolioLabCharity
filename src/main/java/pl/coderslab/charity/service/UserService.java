@@ -18,6 +18,9 @@ public class UserService {
     }
 
     public void save(User user) {
+        if (user.getRole() == null) {
+            user.setRole("USER");
+        }
         userRepository.save(user);
     }
 }
