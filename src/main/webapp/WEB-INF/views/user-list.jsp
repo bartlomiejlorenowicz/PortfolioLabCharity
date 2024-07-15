@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="<c:url value='/resources/static/css/style.css'/>"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <header class="header--main-page">
@@ -31,9 +32,9 @@
         </ul>
         <ul>
             <li><a href="/admin/home" class="btn btn--without-border">Home</a></li>
-            <li><a href="/admin/dashboard" class="btn btn--without-border active">Dashboard</a></li>
+            <li><a href="/admin/dashboard" class="btn btn--without-border">Dashboard</a></li>
             <li><a href="/admin/administrators" class="btn btn--without-border">Administratorzy</a></li>
-            <li><a href="/admin/users" class="btn btn--without-border">Użytkownicy</a></li>
+            <li><a href="/admin/users" class="btn btn--without-border active">Użytkownicy</a></li>
         </ul>
     </nav>
     <div class="slogan container container--90">
@@ -44,47 +45,57 @@
 </header>
 <main class="container">
     <section class="dashboard">
-        <h2>Lista Administratorów</h2>
+        <h2>Lista Użytkowników</h2>
         <table class="table">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
                 <th>Akcje</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="administrator" items="${administrators}">
+            <c:forEach var="user" items="${users}">
                 <tr>
-                    <td><c:out value="${administrator.id}"/></td>
-                    <td><c:out value="${administrator.username}"/></td>
-                    <td><c:out value="${administrator.email}"/></td>
+                    <td><c:out value="${user.id}"/></td>
+                    <td><c:out value="${user.username}"/></td>
+                    <td><c:out value="${user.email}"/></td>
+                    <td><c:out value="${user.role}"/></td>
+                    <td><c:out value="${user.blocked ? 'Blocked' : 'Active'}"/></td>
                     <td>
-                        <a href="<c:url value='/admin/administrators/edit/${administrator.id}'/>">Edytuj</a>
-                        <button onclick="deleteAdministrator(${administrator.id})" class="btn btn-danger">Usuń</button>
+                        <a href="<c:url value='/admin/users/edit/${user.id}'/>">Edytuj</a>
+                        <button onclick="deleteUser(${user.id})" class="btn btn-danger">Usuń</button>
+                        <form action="<c:url value='${user.blocked ? "/admin/users/unblock/" : "/admin/users/block/"}${user.id}' />" method="post" style="display:inline;">
+                            <button type="submit" class="btn" style="background-color: ${user.blocked ? '#28a745' : '#dc3545'}; color: white;">
+                                <c:out value="${user.blocked ? 'Odblokuj' : 'Zablokuj'}"/>
+                            </button>
+                        </form>
+
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-        <a href="<c:url value='/admin/administrators/add'/>" class="btn">Dodaj nowego administratora</a>
+        <a href="<c:url value='/admin/users/add'/>" class="btn">Dodaj nowego użytkownika</a>
     </section>
 </main>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp"></jsp:include>
 <script>
-    function deleteAdministrator(adminId) {
-        if (confirm('Czy na pewno chcesz usunąć tego administratora?')) {
+    function deleteUser(userId) {
+        if (confirm('Czy na pewno chcesz usunąć tego użytkownika?')) {
             $.ajax({
-                url: '/admin/administrators/delete/' + adminId,
+                url: '/admin/users/delete/' + userId,
                 type: 'DELETE',
                 success: function(result) {
-                    alert('Administrator został usunięty');
+                    alert('Użytkownik został usunięty');
                     location.reload();
                 },
                 error: function(err) {
-                    alert('Wystąpił błąd podczas usuwania administratora');
+                    alert('Wystąpił błąd podczas usuwania użytkownika');
                 }
             });
         }

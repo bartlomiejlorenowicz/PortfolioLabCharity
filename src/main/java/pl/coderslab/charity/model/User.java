@@ -23,6 +23,16 @@ public class User {
     @Column(nullable = false)
     private String role;
 
+    private boolean blocked;
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
     public String getRole() {
         return role;
     }

@@ -18,7 +18,7 @@
             <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
         <ul>
-            <li><a href="#start" class="btn btn--without-border active scroll-to">Start</a></li>
+            <li><a href="/" class="btn btn--without-border active scroll-to">Start</a></li>
             <li><a href="#about" class="btn btn--without-border scroll-to">O co chodzi?</a></li>
             <li><a href="#about-us" class="btn btn--without-border scroll-to">O nas</a></li>
             <li><a href="#foundations" class="btn btn--without-border scroll-to">Fundacje i organizacje</a></li>

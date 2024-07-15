@@ -33,6 +33,7 @@
             <li><a href="/admin/home" class="btn btn--without-border">Home</a></li>
             <li><a href="/admin/dashboard" class="btn btn--without-border active">Dashboard</a></li>
             <li><a href="/admin/administrators" class="btn btn--without-border">Administratorzy</a></li>
+            <li><a href="/admin/users" class="btn btn--without-border">Użytkownicy</a></li>
         </ul>
     </nav>
     <div class="slogan container container--90">
@@ -77,6 +78,12 @@
                 </tbody>
             </table>
             <a href="<c:url value='/admin/institutions/add'/>" class="btn">Dodaj nową fundację</a>
+        </div>
+
+        <!-- Odniesienie do listy użytkowników -->
+        <div class="user-list">
+            <h3>Lista Użytkowników</h3>
+            <a href="<c:url value='/admin/users'/>" class="btn">Zobacz listę użytkowników</a>
         </div>
     </section>
 </main>

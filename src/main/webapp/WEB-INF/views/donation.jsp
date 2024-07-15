@@ -11,22 +11,7 @@
     <link rel="stylesheet" href="<c:url value='/resources/static/css/style.css'/>"/>
 </head>
 <body>
-<header class="header--main-page">
-    <nav class="container container--70">
-        <ul>
-            <li><a href="#start" class="btn btn--without-border active scroll-to">Start</a></li>
-            <li><a href="#about" class="btn btn--without-border scroll-to">O co chodzi?</a></li>
-            <li><a href="#about-us" class="btn btn--without-border scroll-to">O nas</a></li>
-            <li><a href="#foundations" class="btn btn--without-border scroll-to">Fundacje i organizacje</a></li>
-            <li><a href="#contact" class="btn btn--without-border scroll-to-footer">Kontakt</a></li>
-        </ul>
-    </nav>
-    <div class="slogan container container--90">
-        <div class="slogan--item">
-            <h1>Zacznij pomagać!<br/>Oddaj niechciane rzeczy w zaufane ręce</h1>
-        </div>
-    </div>
-</header>
+<jsp:include page="header.jsp"/>
 
 <section class="form--steps" style="display: <c:out value="${not empty username ? 'block' : 'none'}"/>;">
     <div class="form--steps-instructions">
